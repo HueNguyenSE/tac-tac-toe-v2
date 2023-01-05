@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Joti+One&family=Oregano&family=Snowburst+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="play-page">
+    <main>
+
+        <div class="container">
+            <header>
+                <h1 class="title"><a href="index.html">Tic Tac Toe</a></h1>
+                <button class="settings-btn">Settings</button>
+            </header>
+            <div id="overlay">
+                <div class="settings-container">
+                    <span class="close">&times;</span>
+                    <h2>Settings</h2>
+                    <div class="settings-block">
+                        <label for="grids" class="setting-item">Grid</label>
+                        <select name="grids" id="grids">
+                            <option value="three">3 x 3</option>
+                            <option value="five"> 5 x 5</option>
+                            <option value="seven">7 x 7</option>
+                            <option value="nine">9 x 9</option>
+                            <option value="eleven">11 x 11</option>
+                        </select>
+                        <label for="connect" class="setting-item">Connect</label>
+                        <input type="number" name="connect" id="connect" min="3" max="11" value="3">
+                        <label for="opponent" class="setting-item">Opponent</label>
+                        <select name="opponent" id="opponent">
+                            <option value="simple-ai">Simple Bot</option>
+                            <option value="smart-ai">Smart Bot</option>
+                        </select>
+                        <label for="sound" class="setting-item">Sound</label>
+                        <button id="sound">Off</button>
+                        <label for="time-limit" class="setting-item">Turn Time Limit(s)</label>
+                        <input type="number" name="time-limit" id="time-limit" min="1" value="60">
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-board">
+
+                <button type="reset" class="reset-btn">Reset</button>
+
+                <div class="table"></div>
+
+                <div class="game-state">
+                    <div class="player">
+                        <p class="name">You</p>
+                        <p class="scrore">0</p>
+                    </div>
+
+                    <div class="tie">
+                        <p>Tie</p>
+                        <p class="score">1</p>
+                    </div>
+                    <div class="opponent">
+                        <p class="name">Simple Bot</p>
+                        <p class="score">1</p>
+                    </div>
+                </div>
+
+            </div>
+
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
