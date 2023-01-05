@@ -117,34 +117,39 @@ const createTable = function (num) {
         (createSquare(i, num));
     }
 };
+// by default, display the table 3 x 3
+createTable(9);
 
 /**
- * 
+ * create the grids (createTable) according to the setting
  */
+const changeGrids = function (event) {
+    // assign gridsValue to the target value
+    let gridsValue = event.target.value;
+    // define the total number of square accordingly
+    let squaresNum = 0;
+    switch (gridsValue) {
+        case "three":
+            squaresNum = 9;
+            break;
+        case "five":
+            squaresNum = 25;
+            break;
+        case "seven":
+            squaresNum = 49;
+            break;
+        case "nine":
+            squaresNum = 81;
+            break;
+        case "eleven":
+            squaresNum = 121;
+            break;
+    };
+    console.log('number of squares', squaresNum);
+    //remove the previous one
+    table.innerHTML = '';
+    // create the new one
+    createTable(squaresNum);
+}
 
-/** 
- * get cols and rows according to the settings 
- */
-
-const gridsValue = grids.value;
-let squaresNum = 0;
-
-switch (gridsValue) {
-    case "three":
-        squaresNum = 9;
-        break;
-    case "five":
-        squaresNum = 25;
-        break;
-    case "seven":
-        squaresNum = 49;
-        break;
-    case "nine":
-        squaresNum = 81;
-        break;
-    case "eleven":
-        squaresNum = 121;
-        break;
-};
-console.log('number of squares', squaresNum);
-createTable(121);
+grids.addEventListener('change', changeGrids);
