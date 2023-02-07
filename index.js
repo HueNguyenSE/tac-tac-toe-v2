@@ -376,8 +376,16 @@ const showResult = function (player) {
 const human = "x";
 const computer = "o";
 
+/**
+ * computer takes a move
+ */
+const bestMove = function () {
+}
+
+
 // human will play first
 let currentPlayer = human;
+
 
 /**
  * toggle turn
@@ -452,6 +460,9 @@ const addMove = function (event) {
         event.target.classList.contains("square") &&
         !event.target.classList.contains("filled")
     ) {
+        if (currentPlayer === computer) {
+            bestMove();
+        }
         // write the token on the table
         event.target.innerHTML = `<span class='token'>${currentPlayer}</span>`;
 
