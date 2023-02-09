@@ -1,6 +1,6 @@
 /**
- * --------------------------------------------------------------------
- * Elements
+ * UI ELEMENTS--------------------------------------------------------------------
+ *
  */
 
 const overlayEffect = document.querySelector(".overlay");
@@ -48,8 +48,8 @@ console.log(
     tieScores
 );
 /**
- * -----------------------------------------------------------------------------
- * start the settings
+ * THE SETTINGS --------------------------------------------------------------
+ *
  */
 
 /**
@@ -202,7 +202,7 @@ const changeGrids = function (event) {
             }
             break;
     }
-    console.log("number of squares", squaresNum);
+    // console.log("number of squares", squaresNum);
     //remove the previous one
     table.innerHTML = "";
     // create the new one
@@ -274,13 +274,13 @@ const scan = function (side, takenMoves) {
 
     // the centre is the last element in the takeMoves array
     let centerMove = takenMoves[takenMoves.length - 1];
-    console.log("centre moves", centerMove);
+    // console.log("centre moves", centerMove);
 
     let i = 0;
     while (i < connect.value) {
         // a checkedMove which could be or not be one of the takenMoves
         let checkedMove = centerMove + distance(side);
-        console.log("checked move", checkedMove);
+        // console.log("checked move", checkedMove);
 
         if (!takenMoves.includes(checkedMove)) {
             break;
@@ -302,10 +302,10 @@ const scan = function (side, takenMoves) {
         }
     }
 
-    console.log("connect", connect.value);
+    // console.log("connect", connect.value);
     // if the takenMoves includes the connectedMove then add the checkedMove to connectedMoves
 
-    console.log("connected moves", connectedMoves);
+    // console.log("connected moves", connectedMoves);
     return connectedMoves;
 };
 
@@ -342,14 +342,14 @@ const win = function (takenMoves) {
         currentMove
     );
 
-    console.log(
-        "row col diagonal1 diagonal2",
-        connectedMovesOfRow,
-        connectedMovesOfCol,
-        connectedMovesOfDiagonal1,
-        connectedMovesOfDiagonal2
-    );
-    console.log("connect", connect.value);
+    // console.log(
+    //     "row col diagonal1 diagonal2",
+    //     connectedMovesOfRow,
+    //     connectedMovesOfCol,
+    //     connectedMovesOfDiagonal1,
+    //     connectedMovesOfDiagonal2
+    // );
+    // console.log("connect", connect.value);
     if (
         connectedMovesOfCol.length >= connect.value ||
         connectedMovesOfRow.length >= connect.value ||
@@ -455,7 +455,7 @@ const addMove = function (event) {
     //remove the event listener of settings button while playing
     settingsButton.removeEventListener('click', showSettings);
 
-    console.log(event.target);
+    // console.log(event.target);
     if (
         event.target.classList.contains("square") &&
         !event.target.classList.contains("filled")
@@ -468,11 +468,11 @@ const addMove = function (event) {
 
         // update the square with filled class
         event.target.classList.add("filled");
-        console.log(event.target.classList);
+        // console.log(event.target.classList);
 
         // update the current game state
         updateState(parseInt(event.target.id), currentPlayer);
-        console.log("moves", gameState);
+        // console.log("moves", gameState);
 
         console.log("currentPlayer", currentPlayer);
 
@@ -486,14 +486,14 @@ const addMove = function (event) {
             takenMoves = gameState[1].takenMoves;
             scores = gameState[1].scores;
         }
-        console.log("takenMoves", takenMoves);
-        console.log('scores', scores);
+        // console.log("takenMoves", takenMoves);
+        // console.log('scores', scores);
 
         if (takenMoves.length >= connect.value && win(takenMoves)) {
             showResult(currentPlayer);
             scores += 1;
             updateScores(currentPlayer, scores);
-            console.log("new gameState", gameState);
+            // console.log("new gameState", gameState);
         }
 
         if (takenMoves.length === Math.floor(squaresNum / 2) + 1) {
@@ -517,5 +517,5 @@ table.addEventListener("click", addMove);
 
 
 /**
- * 
+ *
  */

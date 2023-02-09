@@ -2,9 +2,7 @@
 
 **Variants of Tic Tic Toe for you to play with**
 
-## [Enter the game now!](https://huenguyense.github.io/tac-tac-toe-v2/)
-
-## Quick View
+## [Enter the game!](https://huenguyense.github.io/tac-tac-toe-v2/)
 
 ## Techstack
 
@@ -24,15 +22,17 @@
 
 Some of the challenges:
 
-1. Finding winning conditions that works in any combination of columns, rows and connections. [Read more](###finding-algorithms)
-2. Structuring code to be readable and understandable. [Read more](###restructuring-code)
-3. Refactoring the algorithm that checks the game's winner. [Read more](###refactoring)
+1. Finding winning conditions that works in any combination of columns, rows and connections.
+2. Structuring code to be readable and understandable.
+3. Refactoring the algorithm that checks the game's winner.
 
-## Ideas for improvements
+## For improvements
 
 1. Set timer for each move.
 2. Find a better solution for displaying the game board grid in terms of customisable columns and rows. I have decided not handle this feature. In the current version, I have provided the fixed choices of grids for a better display.
 3. Build a smart bot for human players to play against.
+4. Reset game.
+5. Write test cases.
 
 ## Acknowledgements
 
@@ -42,24 +42,69 @@ This project was completed at the 3rd week of the Software Engineering Immersive
 
 ### Finding algorithm
 
-I challenged myself to find the algorithm that can determines the game's winner in any combinations of grids and connects. Two key things undeneath my solution are:
+**Two key things undeneath** my solution for the algorithm to determine the game's winner in any combinations of grids and connects are:
 
-1. The game will end when a player score the first time.
-2. Assume that human players are rational. Every single move they take is aimed to win the game. Therefore the above reasons, I focus the latest move they take.
+1. Assume that human players are rational. Every single move is aimed to win the game. The algorithm will start with the latest move they take.
+2. The game will end when a player scores first.
 
-Winning condition will be determined as the following steps:
+**In general, winning condition will be determined as the following steps**:
 
-1. From the latest move, scannning any previous moves in each dimension of column, row, diagonal, and opposite diagonal.
+1. For the current player, from the latest move, scannning any other moves in each dimension of column, row, diagonal, and opposite diagonal.
 2. Calculate the number of moves in each dimension.
 3. If the number of moves in at least one dimensiion is equal or greater than the connects, the current player wins.
 4. Otherwise, the game continues till there is no available spot.
 
-**Lessons learned**: I didn't google algorithm for this game when I started the project, which later I realised most of available solutions in the Internet are the same with the hardcoded set of winning combinations. And I am not proud of myself about that. Searching for solutions would not be a bad idea. However, thanks to keeping my mind away from seeking an answer from the magic Internet, I have learned lessons about problem solving and being innovative.
+**Code**
+```javascript
+const win = function (takenMoves) {
+    const currentMove = takenMoves[takenMoves.length - 1];
+    let isWin = false;
+    // all connected moves of the same row
+    const connectedMovesOfRow = scan("left", takenMoves).concat(
+        scan("right", takenMoves),
+        currentMove
+    );
 
-1. Start fresh. Only seek for information that helps me understand the problem.
-2. Generalise. Work with small and particular cases and look for patterns that will work for other cases.
-3. Test soon and quick. Testing ideas as they come. People probably call it as "fail quickly". Quick failures pushed me forward to brainstorm other approaches.
+    // all connected moves of the same colum
+    const connectedMovesOfCol = scan("above", takenMoves).concat(
+        scan("below", takenMoves),
+        currentMove
+    );
 
-### Restructuring code
+    // all connected moves of the same diagonal
+    const connectedMovesOfDiagonal1 = scan("left-above", takenMoves).concat(
+        scan("right-below", takenMoves),
+        currentMove
+    );
 
-### Refactoring algorithm
+    // all connected moves of the opposite diagonal
+    const connectedMovesOfDiagonal2 = scan("right-above", takenMoves).concat(
+        scan("left-below", takenMoves),
+        currentMove
+    );
+
+    if (
+        connectedMovesOfCol.length >= connect.value ||
+        connectedMovesOfRow.length >= connect.value ||
+        connectedMovesOfDiagonal1.length >= connect.value ||
+        connectedMovesOfDiagonal2.length >= connect.value
+    ) {
+        isWin = true;
+    }
+    return isWin;
+};
+```
+
+**Lessons learned**:
+
+1. Start fresh and avoid seeking solutions from the Internet. Only seek for information that helps me understand the problem. I've learned through iteratively ideating, testing the ideas, failing and trying another approach.
+2. Generalise. Start with simple inputs, looking patterns, test them with more complex and special input. Pay attention to edge test cases when working with the special inputs.
+3. Test soon. Testing ideas as they come. People probably call it as "fail quickly". Quick failures pushed me forward to brainstorm other approaches.
+
+### Refactoring
+The present code is refactored code. The first version was hard to understand and follow, even for me. It also violates DRY principles, and it is hard to debug. The total lines of code is more than 1000.
+
+The refactored code tries to be DRY and a clear structure. It is 500 less than the previous version.
+
+**Lessons learned**
+1. Keep revising the code.Keep it DRY and structured. I don't write code for myself, I write it for other people to read. Who wants to read a messy code?
