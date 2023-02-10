@@ -54,8 +54,8 @@ body {
 .overlay {
     position: fixed;
     display: none;
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -169,11 +169,10 @@ h2 {
     flex-flow: row wrap;
     justify-content: flex-start;
     height: auto;
-    border: 1px solid red;
 }
 
-label, 
-input, 
+label,
+input,
 select {
     width: 50%;
     height: 50px;
@@ -183,7 +182,7 @@ select {
     margin-top: 1rem;
 }
 
-input, 
+input,
 select {
     width: 35%;
     border: 1px solid #111;
@@ -235,6 +234,10 @@ label {
     align-items: center;
 }
 
+.table:hover{
+    cursor: pointer;
+}
+
 /* format the square */
 .square {
     border: 2px solid white;
@@ -247,7 +250,7 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2rem;  
+    font-size: 5em;
 }
 
 /* ******************************************************* */
@@ -256,12 +259,21 @@ label {
 .end-game {
     width: 300px;
     height: 150px;
+    padding: 2rem;
+    font-size: 1.5rem;
+    border: 1px solid red;
 }
 
 /* format the continue button */
-.continue {
+.end-game button {
     background-color: white;
     border: 1px solid #111;
     border-radius: 5px;
     font-size: 1rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+.end-game button:hover {
+    cursor: pointer;
 }

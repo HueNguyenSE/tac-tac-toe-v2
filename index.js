@@ -87,6 +87,7 @@ closeButton.addEventListener("click", closeSettings);
  * Create square
  */
 
+
 const createSquare = function (key, num) {
     //create a square div
     const square = document.createElement("div");
@@ -96,6 +97,7 @@ const createSquare = function (key, num) {
     square.className = "square";
     // add the id to the div
     square.id = key;
+
     // set height and width according to the total number of squares
     switch (num) {
         case 9:
@@ -342,14 +344,6 @@ const win = function (takenMoves) {
         currentMove
     );
 
-    // console.log(
-    //     "row col diagonal1 diagonal2",
-    //     connectedMovesOfRow,
-    //     connectedMovesOfCol,
-    //     connectedMovesOfDiagonal1,
-    //     connectedMovesOfDiagonal2
-    // );
-    // console.log("connect", connect.value);
     if (
         connectedMovesOfCol.length >= connect.value ||
         connectedMovesOfRow.length >= connect.value ||
@@ -365,9 +359,35 @@ const win = function (takenMoves) {
  * show the result when the game ends
  */
 const showResult = function (player) {
-    endGame.innerHTML = `<p></p>`
-    endGame.style.display = 'block';
+    if (player === 'tie') {
+        endGame.innerHTML = `
+            <p>${player.toUpperCase()}</p>
+            <button>Continue</button>
+        `
+    } else {
+        endGame.innerHTML = `
+            <p>Congrat! ${player.toUpperCase()} wins.</p>
+            <button>Continue</button>
+        `
+
+    }
     onOverlay();
+    endGame.style.display = 'block';
+
+    /**
+    * handle click on continue button
+    */
+    const handleClick = () => {
+        //hide the game result popup
+        endGame.style.display = 'none';
+        offOverlay();
+        //reset the game
+
+    };
+    const button = document.querySelector('.end-game button');
+    console.log('button', button);
+    button.addEventListener('click', handleClick);
+
 };
 
 /**
@@ -463,7 +483,8 @@ const addMove = function (event) {
         if (currentPlayer === computer) {
             bestMove();
         }
-        // write the token on the table
+
+        // write the token on the table and // style the token size depending on the square side.
         event.target.innerHTML = `<span class='token'>${currentPlayer}</span>`;
 
         // update the square with filled class
