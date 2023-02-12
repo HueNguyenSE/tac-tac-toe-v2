@@ -28,11 +28,11 @@ Some of the challenges:
 
 ## For improvements
 
-[ ]  Set timer for each move.
-[ ] Find a better solution for displaying the game board grid in terms of customisable columns and rows. I have decided not handle this feature. In the current version, I have provided the fixed choices of grids for a better display.
-[ ] Build a smart bot for human players to play against.
-[x] Reset game.
-[ ] Write test cases.
+- [ ]  Set timer for each move.
+- [ ] Find a better solution for displaying the game board grid in terms of customisable columns and rows. I have decided not handle this feature. In the current version, I have provided the fixed choices of grids for a better display.
+- [ ] Build a smart bot for human players to play against
+- [x] Reset game.
+- [ ] Write test cases.
 
 ## Acknowledgements
 
