@@ -13,46 +13,45 @@
 
 ## Features
 
-1. Algorithm to check the game's winner in any combination of board size and winning conditions, instead of hardcoded scenarios.
-2. Select grid size varying from 3x3 to 11x11.
-3. Select connect varying from 3 to 11.
-4. Responsive design which is friendly with mobile devices
+1. Develop an algorithm to determin the winner of a game based on any board size and winning condition, rather than replying on hardcoded scenarios
+2. (UI) Support grid sizes ranging from 3x3 to 11x11 and connections ranging from 3 to 11.
+3. Ensure the game has a responsive design that is mobile-friendly.
 
 ## Challenges
 
-Some of the challenges:
-
-1. Finding winning conditions that works in any combination of columns, rows and connections.
-2. Structuring code to be readable and understandable.
-3. Refactoring the algorithm that checks the game's winner.
+1. Creating universal winning conditions.
+2. Struturing readable and understandable code.
+3. Refactoring winner-checking algorithms
 
 ## For improvements
 
-- [ ]  Set timer for each move.
-- [ ] Find a better solution for displaying the game board grid in terms of customisable columns and rows. I have decided not handle this feature. In the current version, I have provided the fixed choices of grids for a better display.
-- [ ] Build a smart bot for human players to play against
-- [x] Reset game.
+- [x] Implement game reset function.
+- [ ] Set timer for each move.
+- [ ] Improve custimisable grid display.
 - [ ] Write test cases.
+- [ ] Develop intelligent bot as a component.
 
 ## Acknowledgements
 
-This project was completed at the 3rd week of the Software Engineering Immersive at General Assembly (Sydney) led by Dido and Chris (CJ) who are great instructors.
+This project was completed during the 3rd week of the Software Engineering Immersive at General Assembly (Sydney) instructed by Dido and Chris (CJ), who are great instructors.
 
 ## Learning journal
 
 ### Finding algorithm
 
-**Two key things undeneath** my solution for the algorithm to determine the game's winner in any combinations of grids and connects are:
+**Two key things undeneath** The algorithm to determine the game's winner in any board size and winning condition is based on:
 
-1. Assume that human players are rational. Every single move is aimed to win the game. The algorithm will start with the latest move they take.
+1. An assumption that a human player are rational. Every single move is aimed to win the game.
 2. The game will end when a player scores first.
 
-**In general, winning condition will be determined as the following steps**:
+**Winner-checking algorithm psuedo-code**:
 
-1. For the current player, from the latest move, scannning any other moves in each dimension of column, row, diagonal, and opposite diagonal.
-2. Calculate the number of moves in each dimension.
-3. If the number of moves in at least one dimensiion is equal or greater than the connects, the current player wins.
-4. Otherwise, the game continues till there is no available spot.
+1. Scan for other moves in each dimension of column, row, diagonal, and opposite diagonal starting from the latest move.
+2. Calculate the total number of consecutive moves in each dimension.
+3. If at leat one total is greater than or equal to the required number f connections, the current player wins.
+4. If not,  switch to the other player's turn and continues the game.
+5. Repeat steps 1-4 until all spots are taken.
+5. If all spots are taken, and no player won, the game is a tie.
 
 **Code**
 ```javascript
@@ -95,16 +94,16 @@ const win = function (takenMoves) {
 };
 ```
 
-**Lessons learned**:
+**Lessons**:
 
-1. Start fresh and avoid seeking solutions from the Internet. Only seek for information that helps me understand the problem. I've learned through iteratively ideating, testing the ideas, failing and trying another approach.
-2. Generalise. Start with simple inputs, looking patterns, test them with more complex and special input. Pay attention to edge test cases when working with the special inputs.
-3. Test soon. Testing ideas as they come. People probably call it as "fail quickly". Quick failures pushed me forward to brainstorm other approaches.
+1. I only look for information that aids my comprehension of the problem. I learn by iterating through ideas, testing them out, and adjusting if they fail.
+2. I generalise by beginning with straightforward inputs, examining patterns, then testing them with more intricate inputs. I take note of edge cases.
+3. I test ideas as they arise and am not afraid to "fail quickly". Swift failures spur me to brainstorm new approaches.
 
-### Refactoring
-The present code is refactored code. The first version was hard to understand and follow, even for me. It also violates DRY principles, and it is hard to debug. The total lines of code is more than 1000.
+### Refactoring & structuring code
+**Original**: The code was hard to understand and follow, even for me, the creator. It also violates DRY principles, and it is hard to debug. The total lines of code is more than 1000 (including comments and spacing between code blocks).
 
-The refactored code tries to be DRY and a clear structure. It is 500 less than the previous version.
+**Refactored**: Addressesing the above issues, the current code is 500 lines shorter and strives to be DRY with a clear structure.
 
 **Lessons learned**
-1. Keep revising the code.Keep it DRY and structured. I don't write code for myself, I write it for other people to read. Who wants to read a messy code?
+1. Ensure the code DRY and structured since it is not solely for personal use, but for others to comprehend. Messy code is unappealing to most readers.
