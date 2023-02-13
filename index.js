@@ -102,28 +102,33 @@ const createSquare = function (key, num) {
     case 9:
       square.style.width = "calc(90%/3)";
       square.style.paddingTop = "calc(90%/3)";
+      square.style.fontSize = "6em";
       break;
     case 25:
       square.style.width = "calc(90%/5)";
       square.style.paddingTop = "calc(90%/5)";
+      square.style.fontSize = "5em";
       break;
     case 49:
       square.style.width = "calc(90%/7)";
       square.style.paddingTop = "calc(90%/7)";
+      square.style.fontSize = "4em";
       break;
     case 81:
       square.style.width = "calc(90%/8.5)";
       square.style.paddingTop = "calc(90%/8.5)";
+      square.style.fontSize = "3em";
       break;
     case 121:
       square.style.width = "calc(90%/10.5)";
       square.style.paddingTop = "calc(90%/10.5)";
+      square.style.fontSize = "2em";
       break;
   }
   // console.log('square', square);
   // console.log('square side', square.style.height);
 };
-
+grids
 /**
  * Create the game table
  */
@@ -133,8 +138,13 @@ const createTable = function (num) {
     createSquare(i, num);
   }
 };
+
 // by default, display the table 3 x 3
-createTable(9);
+window.addEventListener("load", (event) => {
+  grids.value = 'three';
+  setConnect(3);
+  createTable(9);
+});
 
 /**
  * Set the connect
@@ -160,7 +170,7 @@ const changeConnect = function (event) {
 /**
  * create the grids (createTable) according to the setting
  */
-let squaresNum = 9;
+let squaresNum = 9; //default value of the total numbers of cells.
 const changeGrids = function (event) {
   // assign gridsValue to the target value
   let gridsValue = event.target.value;
@@ -462,7 +472,7 @@ const updateScores = function (player) {
  */
 const playing = function (event) {
   //remove the event listener of settings button while playing
-  settingsButton.removeEventListener("click", showSettings);
+  // settingsButton.removeEventListener("click", showSettings);
 
   // console.log(event.target);
   if (
