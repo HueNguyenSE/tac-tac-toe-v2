@@ -163,6 +163,7 @@ const setConnect = function (num) {
  */
 const changeConnect = function (event) {
   connect.value = event.target.value;
+  resetGame();
 };
 
 // connect.addEventListener("change", changeConnect);
@@ -213,6 +214,10 @@ const changeGrids = function (event) {
       }
       break;
   }
+
+  // reset game
+  resetGame();
+
   // console.log("number of squares", squaresNum);
   //remove the previous one
   table.innerHTML = "";
@@ -417,7 +422,7 @@ let gameState = {
     ties: 0,
   },
 };
-console.log("game state", gameState);
+// console.log("game state", gameState);
 
 // Update game state
 const updateState = function (id, currentPlayer) {
@@ -524,12 +529,13 @@ const playing = function (event) {
 
 const resetGame = () => {
   const filledSquares = document.querySelectorAll(".filled");
-  console.log(filledSquares);
+  // console.log(filledSquares);
   // clear all tokens on the screen
   for (let node of filledSquares) {
     node.innerHTML = "";
     node.classList.remove("filled");
   }
+  currentPlayer = humanToken;
   // remove all moves from the takenMoves by each player
   gameState.human.takenMoves.length = 0;
   gameState.opponent.takenMoves.length = 0;
