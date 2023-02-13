@@ -1,8 +1,8 @@
-# Tic Tac Toe V2
+# Tic Tac Toe Variants
 
-**Variants of Tic Tic Toe for you to play with**
+**Different variants of Tic Tic Toe for you to play with**
 
-## [Enter the game!](https://huenguyense.github.io/tac-tac-toe-v2/)
+## [Enter the game!](https://huenguyense.github.io/tictactoe-variants/)
 
 ## Techstack
 
@@ -49,48 +49,49 @@ This project was completed during the 3rd week of the Software Engineering Immer
 1. Scan for other moves in each dimension of column, row, diagonal, and opposite diagonal starting from the latest move.
 2. Calculate the total number of consecutive moves in each dimension.
 3. If at leat one total is greater than or equal to the required number f connections, the current player wins.
-4. If not,  switch to the other player's turn and continues the game.
+4. If not, switch to the other player's turn and continues the game.
 5. Repeat steps 1-4 until all spots are taken.
-5. If all spots are taken, and no player won, the game is a tie.
+6. If all spots are taken, and no player won, the game is a tie.
 
 **Code**
+
 ```javascript
 const win = function (takenMoves) {
-    const currentMove = takenMoves[takenMoves.length - 1];
-    let isWin = false;
-    // all connected moves of the same row
-    const connectedMovesOfRow = scan("left", takenMoves).concat(
-        scan("right", takenMoves),
-        currentMove
-    );
+  const currentMove = takenMoves[takenMoves.length - 1];
+  let isWin = false;
+  // all connected moves of the same row
+  const connectedMovesOfRow = scan("left", takenMoves).concat(
+    scan("right", takenMoves),
+    currentMove
+  );
 
-    // all connected moves of the same colum
-    const connectedMovesOfCol = scan("above", takenMoves).concat(
-        scan("below", takenMoves),
-        currentMove
-    );
+  // all connected moves of the same colum
+  const connectedMovesOfCol = scan("above", takenMoves).concat(
+    scan("below", takenMoves),
+    currentMove
+  );
 
-    // all connected moves of the same diagonal
-    const connectedMovesOfDiagonal1 = scan("left-above", takenMoves).concat(
-        scan("right-below", takenMoves),
-        currentMove
-    );
+  // all connected moves of the same diagonal
+  const connectedMovesOfDiagonal1 = scan("left-above", takenMoves).concat(
+    scan("right-below", takenMoves),
+    currentMove
+  );
 
-    // all connected moves of the opposite diagonal
-    const connectedMovesOfDiagonal2 = scan("right-above", takenMoves).concat(
-        scan("left-below", takenMoves),
-        currentMove
-    );
+  // all connected moves of the opposite diagonal
+  const connectedMovesOfDiagonal2 = scan("right-above", takenMoves).concat(
+    scan("left-below", takenMoves),
+    currentMove
+  );
 
-    if (
-        connectedMovesOfCol.length >= connect.value ||
-        connectedMovesOfRow.length >= connect.value ||
-        connectedMovesOfDiagonal1.length >= connect.value ||
-        connectedMovesOfDiagonal2.length >= connect.value
-    ) {
-        isWin = true;
-    }
-    return isWin;
+  if (
+    connectedMovesOfCol.length >= connect.value ||
+    connectedMovesOfRow.length >= connect.value ||
+    connectedMovesOfDiagonal1.length >= connect.value ||
+    connectedMovesOfDiagonal2.length >= connect.value
+  ) {
+    isWin = true;
+  }
+  return isWin;
 };
 ```
 
@@ -101,9 +102,11 @@ const win = function (takenMoves) {
 3. I test ideas as they arise and am not afraid to "fail quickly". Swift failures spur me to brainstorm new approaches.
 
 ### Refactoring & structuring code
+
 **Original**: The code was hard to understand and follow, even for me, the creator. It also violates DRY principles, and it is hard to debug. The total lines of code is more than 1000 (including comments and spacing between code blocks).
 
 **Refactored**: Addressesing the above issues, the current code is 500 lines shorter and strives to be DRY with a clear structure.
 
 **Lessons learned**
+
 1. Ensure the code DRY and structured since it is not solely for personal use, but for others to comprehend. Messy code is unappealing to most readers.
